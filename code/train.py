@@ -139,7 +139,7 @@ def main():
         # _, train_acc = validate(labeled_trainloader,
         #                        model,  criterion, epoch, mode='Train Stats')
         #print("epoch {}, train acc {}".format(epoch, train_acc))
-
+        """
         val_loss, val_acc = validate(
             val_loader, model, criterion, epoch, mode='Valid Stats')
 
@@ -168,9 +168,10 @@ def main():
 
     print('Test acc:')
     print(test_accs)
-
+    """
 
 def train(labeled_trainloader, unlabeled_trainloader, model, optimizer, scheduler, criterion, epoch, n_labels, train_aug=False):
+    print("Train called")
     labeled_train_iter = iter(labeled_trainloader)
     unlabeled_train_iter = iter(unlabeled_trainloader)
     model.train()
@@ -275,6 +276,8 @@ def train(labeled_trainloader, unlabeled_trainloader, model, optimizer, schedule
             all_targets = torch.cat(
                 [targets_x, targets_x, targets_u, targets_u, targets_u], dim=0)
 
+        print(all_inputs.len())
+        """
         if args.separate_mix:
             idx1 = torch.randperm(batch_size)
             idx2 = torch.randperm(all_inputs.size(0) - batch_size) + batch_size
@@ -289,7 +292,7 @@ def train(labeled_trainloader, unlabeled_trainloader, model, optimizer, schedule
         input_a, input_b = all_inputs, all_inputs[idx]
         target_a, target_b = all_targets, all_targets[idx]
         length_a, length_b = all_lengths, all_lengths[idx]
-
+        
         if args.mix_method == 0:
             # Mix sentences' hidden representations
             logits = model(input_a, input_b, l, mix_layer)
@@ -362,7 +365,7 @@ def train(labeled_trainloader, unlabeled_trainloader, model, optimizer, schedule
         if batch_idx % 1000 == 0:
             print("epoch {}, step {}, loss {}, Lx {}, Lu {}, Lu2 {}".format(
                 epoch, batch_idx, loss.item(), Lx.item(), Lu.item(), Lu2.item()))
-
+        """
 
 def validate(valloader, model, criterion, epoch, mode):
     model.eval()
