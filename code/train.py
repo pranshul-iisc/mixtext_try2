@@ -100,12 +100,16 @@ def main():
     # Read dataset and build dataloaders
     train_labeled_set, train_unlabeled_set, val_set, test_set, n_labels = get_data(
         args.data_path, args.n_labeled, args.un_labeled, model=args.model, train_aug=args.train_aug)
+    print("printing1",train_labeled_set.len())
     labeled_trainloader = Data.DataLoader(
         dataset=train_labeled_set, batch_size=args.batch_size, shuffle=True)
+     print("printing2")
     unlabeled_trainloader = Data.DataLoader(
         dataset=train_unlabeled_set, batch_size=args.batch_size_u, shuffle=True)
+    print("printing3")
     val_loader = Data.DataLoader(
         dataset=val_set, batch_size=512, shuffle=False)
+    print("printing4")
     test_loader = Data.DataLoader(
         dataset=test_set, batch_size=512, shuffle=False)
     print("MAin called1")
