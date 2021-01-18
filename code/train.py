@@ -103,7 +103,7 @@ def main():
     print("printing1",train_labeled_set.len())
     labeled_trainloader = Data.DataLoader(
         dataset=train_labeled_set, batch_size=args.batch_size, shuffle=True)
-     print("printing2")
+    print("printing2")
     unlabeled_trainloader = Data.DataLoader(
         dataset=train_unlabeled_set, batch_size=args.batch_size_u, shuffle=True)
     print("printing3")
