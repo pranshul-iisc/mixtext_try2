@@ -95,6 +95,7 @@ print("Mix layers sets: ", args.mix_layers_set)
 
 
 def main():
+    print("MAin called")
     global best_acc
     # Read dataset and build dataloaders
     train_labeled_set, train_unlabeled_set, val_set, test_set, n_labels = get_data(
@@ -107,7 +108,7 @@ def main():
         dataset=val_set, batch_size=512, shuffle=False)
     test_loader = Data.DataLoader(
         dataset=test_set, batch_size=512, shuffle=False)
-
+    print("MAin called1")
     # Define the model, set the optimizer
     model = MixText(n_labels, args.mix_option).cuda()
     model = nn.DataParallel(model)
@@ -127,7 +128,7 @@ def main():
     criterion = nn.CrossEntropyLoss()
 
     test_accs = []
-
+    print("MAin called2")
     # Start training
     for epoch in range(args.epochs):
 
@@ -183,7 +184,7 @@ def train(labeled_trainloader, unlabeled_trainloader, model, optimizer, schedule
         args.T = 0.9
         flag = 1
 
-    for batch_idx in range(args.val_iteration):
+    for batch_idx in range(1):
 
         total_steps += 1
 
