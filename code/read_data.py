@@ -20,9 +20,11 @@ class Translator:
             self.ru = pickle.load(f)
 
     def __call__(self, ori, idx):
-        out1 = self.de[idx]
-        out2 = self.ru[idx]
-        return out1, out2, ori
+        if(self.de.haskey(idx))
+            out1 = self.de[idx]
+            out2 = self.ru[idx]
+            return out1, out2, ori
+        return "","",ori
 
 def get_data(data_path, n_labeled_per_class, unlabeled_per_class=5000, max_seq_len=256, model='bert-base-uncased', train_aug=False):
     """Read data, split the dataset, and build dataset for dataloaders.
