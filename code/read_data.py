@@ -101,28 +101,15 @@ def train_val_split(labels, n_labeled_per_class, unlabeled_per_class, n_labels, 
 
     for i in range(n_labels):
         idxs = np.where(labels == i)[0]
+        print("For calss", i, "size", idxs.size)
         np.random.shuffle(idxs)
-        if n_labels == 2:
-            # IMDB
-            train_pool = np.concatenate((idxs[:500], idxs[5500:-2000]))
-            train_labeled_idxs.extend(train_pool[:n_labeled_per_class])
-            train_unlabeled_idxs.extend(
-                idxs[500: 500 + 5000])
-            val_idxs.extend(idxs[-2000:])
-        elif n_labels == 10:
-            # DBPedia
-            train_pool = np.concatenate((idxs[:500], idxs[10500:-2000]))
-            train_labeled_idxs.extend(train_pool[:n_labeled_per_class])
-            train_unlabeled_idxs.extend(
-                idxs[500: 500 + unlabeled_per_class])
-            val_idxs.extend(idxs[-2000:])
-        else:
-            # Yahoo/AG News
-            train_pool = np.concatenate((idxs[:500], idxs[5500:-2000]))
-            train_labeled_idxs.extend(train_pool[:n_labeled_per_class])
-            train_unlabeled_idxs.extend(
-                idxs[500: 500 + 5000])
-            val_idxs.extend(idxs[-2000:])
+        # Yahoo/AG News
+        train_pool = np.concatenate((idxs[:500], idxs[5500:-5000]))
+        train_labeled_idxs.extend(train_pool[:n_labeled_per_class])
+        print(len(train_labeled_idxs))
+        train_unlabeled_idxs.extend(
+            idxs[500: 500 + 5000])
+        val_idxs.extend(idxs[-5000:])
     np.random.shuffle(train_labeled_idxs)
     np.random.shuffle(train_unlabeled_idxs)
     np.random.shuffle(val_idxs)
