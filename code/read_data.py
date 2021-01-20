@@ -20,7 +20,7 @@ class Translator:
             self.ru = pickle.load(f)
 
     def __call__(self, ori, idx):
-        if(self.de.hash_key(idx)):
+        if(self.de.has_key(idx)):
             out1 = self.de[idx]
             out2 = self.ru[idx]
             return out1, out2, ori
