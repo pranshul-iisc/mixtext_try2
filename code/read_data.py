@@ -45,16 +45,13 @@ def get_data(data_path, n_labeled_per_class, unlabeled_per_class=5000, max_seq_l
     test_df = pd.read_csv(data_path+'test.csv', header=None)
     print("data read done")
     # Here we only use the bodies and removed titles to do the classifications
-    """
-    train_labels = np.array([train_df[0][i]-1 for i in range(800)])#[v-1 for v in train_df[0]]
-    train_text = np.array([train_df[2][i] for i in range(800)])#([v for v in train_df[2]])
-
-    test_labels = np.array([train_df[0][i]-1 for i in range(80)])#([u-1 for u in test_df[0]])
-    test_text = np.array([test_df[2][i] for i in range(80)])#([v for v in test_df[2]])
+    #"""
+    train_labels = np.array([train_df[0][i]-1 for i in range(200000)])#[v-1 for v in train_df[0]]
+    train_text = np.array([train_df[2][i] for i in range(200000)])#([v for v in train_df[2]])
     """
     train_labels = np.array([v-1 for v in train_df[0]])
     train_text = np.array([v for v in train_df[2]])
-
+    """
     test_labels = np.array([u-1 for u in test_df[0]])
     test_text = np.array([v for v in test_df[2]])
 
